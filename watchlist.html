@@ -32,12 +32,18 @@
             <form id="movie-search">
                 <div class="search-section">
                     <i class="search-icon fas fa-search"></i>
-                    <input type="text" placeholder="Search for a movie" />
-                    <button id="search-btn">Search</button>
+                    <input
+                        id="movie-name"
+                        type="text"
+                        placeholder="Search for a movie"
+                    />
+                    <button id="search-btn" type="submit">Search</button>
                 </div>
             </form>
         </header>
-        <main></main>
+        <main>
+            <div id="movie-list"></div>
+        </main>
         <script src="data.js"></script>
     </body>
 </html>
