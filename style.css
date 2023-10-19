@@ -43,7 +43,7 @@ a {
     font-size: 14px;
 }
 
-.search-section > input {
+#movie-name {
     min-width: 350px;
     padding-left: 40px;
     border-top-left-radius: 6px;
@@ -52,7 +52,7 @@ a {
     color: white;
 }
 
-.search-section > button {
+#search-btn {
     padding-left: 30px;
     padding-right: 30px;
     border-top-right-radius: 6px;
@@ -61,8 +61,8 @@ a {
     background-color: #4b4b4b;
 }
 
-.search-section > input,
-button {
+#movie-name,
+#search-btn {
     border: 0px solid #4b4b4b;
     padding-top: 9px;
     padding-bottom: 9px;
@@ -96,5 +96,55 @@ button {
 
 #movie-list > i,
 p {
-    color: #2e2e2f;
+    color: #a5a5a5;
+}
+
+.poster-img {
+    width: 140px;
+    height: 200px;
+}
+
+.film-card {
+    display: flex;
+    gap: 20px;
+    margin-left: 45px;
+    margin-right: 45px;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #787878;
+}
+
+.description-field div:nth-child() {
+    font-size: 14px;
+}
+
+.d-flex {
+    display: flex;
+    align-items: center;
+}
+
+.d-flex > p {
+    color: white;
+}
+
+div.d-flex {
+    gap: 20px;
+}
+
+.raiting > span {
+    color: gold;
+}
+
+#add-to-watchlist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background-color: white;
+    border-radius: 9px;
+    font-size: 18px;
+    font-weight: bolder;
+    cursor: pointer;
 }
