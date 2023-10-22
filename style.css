@@ -135,7 +135,7 @@ div.d-flex {
     color: gold;
 }
 
-#add-to-watchlist {
+#toggle-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,4 +147,8 @@ div.d-flex {
     font-size: 18px;
     font-weight: bolder;
     cursor: pointer;
+}
+
+#watchlist {
+    margin-top: 35px;
 }

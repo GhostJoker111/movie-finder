@@ -6,23 +6,23 @@ movieSearchEl.addEventListener("submit", function (e) {
 
   const movieNameEl = document.getElementById("movie-name");
   movieListEl.innerHTML = "";
-  handleFilmSearchResults(movieNameEl.value);
+  getFilmSearchResults(movieNameEl.value);
 });
 
-function handleFilmSearchResults(movieName) {
+function getFilmSearchResults(movieName) {
   fetch(`http://www.omdbapi.com/?apikey=c0791940&t=${movieName}`)
     .then(res => res.json())
     .then(data => {
       if (data.Response === 'False') {
         throw Error("Movie not found");
       } else {
-        renderFilmCard(data);
+        handleFilmSearchResults(data);
       }
     })
     .catch(() => movieListEl.innerHTML = `<p>Unable to find what you're looking for. Please try another search.</p>`)
 };
 
-function renderFilmCard(data) {
+function handleFilmSearchResults(data) {
   const { Poster, Title, Ratings, Runtime, Genre, Plot } = data;
 
   const filmCard = document.createElement("div");
@@ -40,7 +40,7 @@ function renderFilmCard(data) {
       <div class="d-flex">
         <p>${Runtime}</p>
         <p>${Genre}</p>
-        <button id="add-to-watchlist">+</button>
+        <button id="toggle-btn"></button>
       </div>
       <div>
         <p>${Plot}</p>
@@ -48,4 +48,17 @@ function renderFilmCard(data) {
     </div>
   `
   movieListEl.append(filmCard);
-}
+
+  let toggleBtn = document.getElementById("toggle-btn");
+  localStorage.getItem(`${Title}`) ? toggleBtn.innerHTML = "-" : toggleBtn.innerHTML = "+";
+
+  toggleBtn.addEventListener("click", () => {
+    if (!localStorage.getItem(`${Title}`)) {
+      localStorage.setItem(`${Title}`, JSON.stringify(data));
+      toggleBtn.innerHTML = "-";
+    } else {
+      localStorage.removeItem(`${Title}`);
+      toggleBtn.innerHTML = "+";
+    }
+  })
+};
