@@ -23,7 +23,7 @@ function getFilmSearchResults(movieName) {
 };
 
 function handleFilmSearchResults(data) {
-  const { Poster, Title, Ratings, Runtime, Genre, Plot } = data;
+  const { Poster, Title, Ratings, Runtime, Genre, Plot, imdbID } = data;
 
   const filmCard = document.createElement("div");
   filmCard.classList.add("film-card");
@@ -50,14 +50,14 @@ function handleFilmSearchResults(data) {
   movieListEl.append(filmCard);
 
   let toggleBtn = document.getElementById("toggle-btn");
-  localStorage.getItem(`${Title}`) ? toggleBtn.innerHTML = "-" : toggleBtn.innerHTML = "+";
+  localStorage.getItem(`${imdbID}`) ? toggleBtn.innerHTML = "-" : toggleBtn.innerHTML = "+";
 
   toggleBtn.addEventListener("click", () => {
-    if (!localStorage.getItem(`${Title}`)) {
-      localStorage.setItem(`${Title}`, JSON.stringify(data));
+    if (!localStorage.getItem(`${imdbID}`)) {
+      localStorage.setItem(`${imdbID}`, JSON.stringify(data));
       toggleBtn.innerHTML = "-";
     } else {
-      localStorage.removeItem(`${Title}`);
+      localStorage.removeItem(`${imdbID}`);
       toggleBtn.innerHTML = "+";
     }
   })

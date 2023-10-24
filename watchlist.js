@@ -4,13 +4,13 @@ let keys = Object.keys(localStorage)
 function handleWatchlist(keys) {
   watchlist.innerHTML = ""
 
-  keys.forEach((key) => {
+  const feedHtml = keys.map(key => {
     const data = JSON.parse(localStorage.getItem(key));
-    const { Poster, Title, Ratings, Runtime, Genre, Plot } = data;
+    const { Poster, Title, Ratings, Runtime, Genre, Plot, imdbID } = data;
 
     watchlist.innerHTML +=
       `
-    <div class="film-card" id="film-card-${Title}"> 
+    <div class="film-card"> 
       <div class="poster-div">
         <img class="poster-img" src=${Poster}>
       </div>
@@ -22,7 +22,7 @@ function handleWatchlist(keys) {
         <div class="d-flex">
           <p>${Runtime}</p>
           <p>${Genre}</p>
-          <button id="toggle-btn-${Title}">-</button>
+          <button id="toggle-btn" data-id=${imdbID}>-</button>
         </div>
         <div>
           <p>${Plot}</p>
@@ -30,14 +30,17 @@ function handleWatchlist(keys) {
       </div>
     </div>
     `
+  }).join('')
 
-    document.getElementById(`toggle-btn-${Title}`).addEventListener('click', function () {
-      localStorage.removeItem(`${Title}`);
-      document.getElementById(`film-card-${Title}`).remove();
+  document.addEventListener('click', function (e) {
+    if (e.target.dataset.id) {
+      localStorage.removeItem(e.target.dataset.id);
       keys = Object.keys(localStorage)
       handleWatchlist(keys)
-    });
+    }
   })
+
+  return feedHtml;
 };
 
 handleWatchlist(keys)
